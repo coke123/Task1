@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>task2</title>
+</head>
+<body>
+    <h3>污染城市列表</h3>
+    <ul id="aqi-list">
+        <!--
+            <li>第一名：福州(样例),10</li>
+            <li>第二名：福州(样例),10</li>
+        -->
+    </ul>
+
+</body>
+</html>
+<script>
+    var aqiData=[
+        ["北京",90],
+        ["上海",50],
+        ["福州",10],
+        ["广州",50],
+        ["成都",90],
+        ["西安",100],
+    ];
+
+    (function (){
+        /*
+        在注释下方编写代码
+        遍历读取aqiData中各个城市的数据
+        将空气质量指数大于60的城市显示aqi-list的列表中
+        */
+
+        var aqiul=document.getElementById('aqi-list');
+        var nlist=aqiData.filter(function(a){return a[1]>60;}); 
+                        //ECMAScript5中的数组方法filter() :过滤
+                        //选择出空气质量大于60的城市,赋值给新的数组nlist;
+
+        //对这个新的数组进行由大到小排序。
+            nlist.sort(function(a,c){ //
+                return c[1]-a[1];  //函数返回负数时，c[1]排序在前；返回正数，a[1]排序在前；返回零，参数相等。
+            }); //对空气质量指数有大到小排序
+            //javascript数组方法Array.sort()方法将其中的元素排序并返回排序后的数组.
+            //当不带参数调用sort()时,数组元素以字母顺序排序.
+            //(如有必要将临时转化为字符串进行比较).为了按照其他方式而非字母顺序进行排序,必须给sort()传递一个函数.
+
+        (function wirte(){ //输出
+        for(var i=0;i<nlist.length;i++){
+            var li=document.createElement('li');
+            aqiul.append(li);
+            li.innerHTML='第'+(i+1)+'名:'+nlist[i];
+         }
+      })();
+    })();
+
+</script>
